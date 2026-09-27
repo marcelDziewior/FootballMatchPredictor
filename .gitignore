@@ -2,4 +2,4 @@
 venv/
 __pycache__/
 gamehistory.csv
-api_football.py
+main.py
