@@ -1,0 +1,1 @@
+This project is responsible for predicting outcome of Premier League Football games. Im using to seperate API's ("api.football-data.org", and "v3.football.api-sports.io").
