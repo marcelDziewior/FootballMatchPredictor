@@ -48,22 +48,25 @@ def get_and_save_games(league_id, season):
         else:
             result = 2
 
+        round_number = str(round).replace("Regular Season - ", "").strip()
+        clean_round = int(round_number) if round_number.isdigit() else 0
+
         games_list.append({
             "date": game_date,
-            "round": round,
-            "home_id": home_id,
-            "home_name": home_name,
-            "away_id": away_id,
-            "away_name": away_name,
-            "home_goals": home_goals,
-            "away_goals": away_goals,
+            "matchday": clean_round,
+            "homeID": home_id,
+            "homeTeam": home_name,
+            "awayID": away_id,
+            "awayTeam": away_name,
+            "goalsHome": home_goals,
+            "goalsAway": away_goals,
             "result": result
         })
 
-        df = pandas.DataFrame(games_list)
+    df = pandas.DataFrame(games_list)
 
-        filename = "gamehistory_v2.csv"
-        df.to_csv(filename, index=False, encoding='utf-8')
+    filename = "gamehistory_v4.csv"
+    df.to_csv(filename, index=False, encoding='utf-8')
 
 if __name__ == "__main__":
-    get_and_save_games(39, 2023)
+    get_and_save_games(39, 2024)

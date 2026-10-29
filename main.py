@@ -34,8 +34,8 @@ def download_league_table(league_id):
     else:
         print(f"{response.status_code} - {response.text}")
 
-def get_and_save_games(league_id):
-    url = f"{BASE_URL}/competitions/{league_id}/matches?status=FINISHED"
+def get_and_save_games(league_id, season):
+    url = f"{BASE_URL}/competitions/{league_id}/matches?status=FINISHED&season={season}"
     response = requests.get(url, headers=HEADERS)
 
     if response.status_code != 200:
@@ -82,12 +82,12 @@ def get_and_save_games(league_id):
             "result": result
         })
 
-        df = pandas.DataFrame(games_list)
+    df = pandas.DataFrame(games_list)
 
-        filename = "gamehistory.csv"
-        df.to_csv(filename, index=False, encoding='utf-8')
+    filename = "gamehistory123.csv"
+    df.to_csv(filename, mode='a', index=False, encoding='utf-8')
 
 
 if __name__ == "__main__":
     #download_league_table("PL")
-    get_and_save_games("PL")
+    get_and_save_games("PL", 2025)
